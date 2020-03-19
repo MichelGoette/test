@@ -1,0 +1,163 @@
+@startuml
+'definition elements'
+storage octopus #lightpink
+storage GIMS #lightpink
+storage loginsplitter #lightpink
+storage GAPI #lightpink
+cloud Papertrail #silver
+storage Journal #lightpink
+cloud Zendesk #silver
+storage ZendeskAdapter as "Zendesk Adapter" #lightpink
+storage POSTCD #lightpink
+storage Docstore #lightpink
+storage Zendisputes #lightpink
+storage alocat #lightpink
+storage balancelist #lightpink
+storage Pricat #lightpink
+storage Accountbook #lightpink
+storage IBAN #lightpink
+storage marcoms #lightpink
+storage TopcomLogs as "Topcom Logs" #lightpink
+storage Bookings #lightpink
+storage PDFGEN #lightpink
+storage SAP #silver
+cloud BundesbankValidator as "Bundesbank Validator" #silver
+storage GRID #silver
+cloud Creditcheck #silver
+cloud Sparkasse #silver
+storage SFirm #lightpink
+storage MobileApp as "Mobile App" #lightgreen
+cloud Brandseven #silver
+storage MetricsAdapter as "Metrics Adapter" #lightpink
+storage CustomerPortal as "Customer Portal" #lightgreen
+storage MarketPortal as "Market Portal" #lightgreen
+storage enercity.de #darkorange
+storage FIL #lightgreen
+storage eegreport #lightpink
+storage Controlling #lightpink
+storage ENETadaptor as "ENET adaptor" #lightpink
+cloud ENET #silver
+storage Consumption #lightpink
+storage PrintingandMailingService as " Printing and Mailing Service" #lightpink
+storage Soptim #lightpink
+storage FieryReverseProxy as "Fiery Reverse Proxy" #silver
+storage WEBDAVServer as "WEBDAV Server" #silver
+storage FieryAPI as "Fiery API" #silver
+storage MetricsServiceed4datalake as "Metrics Service (ed4 datalake)" #lightpink
+storage MetricsServiceed4datasilo as "Metrics Service (ed4 datasilo)" #lightpink
+storage Soptimvendor as "Soptim (vendor)" #silver
+storage B2BNextLevelIntegration as "B2B (Next_Level_Integration)" #silver
+storage AgentPortal  as "Agent Portal" #lightgreen
+cloud Contentful #silver
+node TOPCOM #violet
+node triPica #skyblue
+database GIMSDatabase #lightpink
+database triPicadatalake as "TriPica datalake" #skyblue
+database PrintingDatabase as "Printing Database" #lightpink
+database PlatformDatabase as "Platform Database" #lightpink
+
+'legend'
+node Legend as "Legend" {
+    rectangle Microservices #lightpink
+    rectangle Frontend #lightgreen
+    rectangle triPica2 as "triPica" #skyblue
+    rectangle Topcom #violet
+    rectangle External #silver
+    rectangle Neoskop #darkorange
+} 
+
+'dependencies'
+Accountbook -->> GIMS
+Accountbook -->> triPica
+AgentPortal -->> FIL
+Bookings -->> GIMS
+Bookings -->> SAP
+Bookings -->> PlatformDatabase
+Bookings -->> triPicadatalake
+Bookings -->> WEBDAVServer
+Bookings -->> Docstore
+Brandseven -->> triPica
+Consumption -->> WEBDAVServer
+Controlling -->> triPicadatalake
+Controlling -->> ENETadaptor
+Controlling -->> Consumption
+CustomerPortal -->> FIL
+ENETadaptor -->> ENET
+FIL -->> IBAN
+FIL -->> SFirm
+FIL -->> marcoms
+FIL -->> triPica
+FIL -->> POSTCD
+FIL -->> Contentful
+FIL -->> PrintingandMailingService
+FIL -->> ENETadaptor
+GRID -->> B2BNextLevelIntegration
+B2BNextLevelIntegration -->> GRID
+B2BNextLevelIntegration -->> TOPCOM
+GIMS -->> SFirm
+GIMS -->> triPicadatalake
+GIMS -->> ENETadaptor
+GIMS -->> Pricat
+GIMS -->> TOPCOM
+GIMS -->> ZendeskAdapter
+GIMS -->> GIMSDatabase
+GIMS -->> Consumption
+IBAN -->> BundesbankValidator
+marcoms -->> triPicadatalake
+MetricsAdapter -->> triPicadatalake
+MobileApp -->> triPica
+MobileApp -->> IBAN
+MarketPortal -->> FIL
+POSTCD -->> Docstore
+SFirm -->> GIMS
+SFirm -->> PDFGEN
+SFirm -->> triPica
+SFirm -->> Docstore
+SFirm -->> Sparkasse
+Soptim -->> Soptimvendor
+Soptim -->> triPicadatalake
+Soptim -->> WEBDAVServer
+TOPCOM -->> triPica
+TOPCOM -->> marcoms
+TOPCOM -->> GIMS
+TOPCOM -->> Pricat
+TOPCOM -->> B2BNextLevelIntegration
+TOPCOM -->> TopcomLogs
+triPica -->> triPicadatalake
+triPica -->> TOPCOM
+triPica -->> PDFGEN
+triPica -->> Consumption
+triPica -->> ENETadaptor
+triPica -->> Docstore
+triPica -->> SFirm
+triPica -->> Creditcheck
+triPica -->> IBAN
+triPica -->> Bookings
+triPica -->> ZendeskAdapter
+triPica -->> PrintingandMailingService
+MetricsServiceed4datasilo -->> triPicadatalake
+MetricsServiceed4datasilo -->> GIMS
+MetricsServiceed4datalake -->> GIMS
+ZendeskAdapter -->> Zendesk
+FieryReverseProxy -->> FieryAPI
+PrintingandMailingService -->> FieryReverseProxy
+PrintingandMailingService -->> PrintingDatabase
+alocat -->> ZendeskAdapter
+alocat -->> triPicadatalake
+octopus -->> triPicadatalake
+octopus -->> Bookings
+octopus -->> GIMS
+octopus -->> GIMSDatabase
+octopus -->> Docstore
+Zendisputes -->> Zendesk
+Zendisputes -->> PlatformDatabase
+eegreport -->> WEBDAVServer
+eegreport -->> triPicadatalake
+eegreport -->> Consumption
+eegreport -->> ENETadaptor
+balancelist -->> triPicadatalake
+balancelist -->> Docstore
+balancelist -->> Bookings
+loginsplitter -->> GAPI
+enercity.de -->> FIL
+@enduml
