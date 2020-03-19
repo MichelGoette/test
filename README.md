@@ -5,7 +5,7 @@ Source for the graph on https://enerdigi.enercity.de/wiki/display/DIGITAL/Platfo
 
 ### latest graph
 
-![](/platform_service_inventory/platform_service_inventory.png)
+![](platform_service_inventory/platform_service_inventory.png)
 
 ### requirements 
   - Java
